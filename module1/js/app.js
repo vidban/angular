@@ -28,15 +28,9 @@ function LunchCheckController ($scope){
 	}
 	$scope.verify = function(){					// To verify the options submitted
 		this.options = this.options.trim();		// Trims leading and trailing whitespaces
-		if (this.options == ""){
-			this.message1 = 'empty.'
-			this.message = 'Please enter data first.';
-			this.turnRed();
-			this.showIt = true;
-			return;
-		}
 
 		var choices = this.options.split(',');	// Stores options as an array of choices
+		console.log(choices);
 		for (var i=0; i< choices.length; i++){	// Deletes any empty options inbetween other options
 			choices[i] = choices[i].trim();
 			if (choices[i] == ''){
@@ -44,6 +38,15 @@ function LunchCheckController ($scope){
 				i--;
 			}
 		}
+		console.log(choices);
+		if (choices == ""){
+			this.message1 = 'empty.'
+			this.message = 'Please enter data first.';
+			this.turnRed();
+			this.showIt = true;
+			return;
+		}
+
 		this.options = choices.join();
 
 		if (choices.length<= 3){				// Displays message base on choices
